@@ -4,20 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PeakTask - Climb Your Way to Productivity</title>
+    <title>GainNotes - Simple Gym Tracker & Workout Logger</title>
     <!-- SEO Meta Tags -->
     <meta name="description"
-        content="PeakTask is a unique to-do list app that helps you prioritize tasks using a ranking algorithm and rewards your productivity with mountain elevation.">
+        content="GainNotes is a minimal and powerful workout logger for gym enthusiasts. Track sets, reps, and PRs with a zero-friction interface.">
     <meta name="keywords"
-        content="to-do list, productivity, task manager, habit tracker, mountain climbing, elevation, ranked tasks">
+        content="gym tracker, workout logger, weightlifting app, fitness tracker, PR tracker, bodybuilding, strength training">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-black: #000000;
-            --accent-color: #0ea5e9;
-            --accent-glow: rgba(14, 165, 233, 0.3);
+            --accent-color: #ff7a6a;
+            --accent-glow: rgba(255, 122, 106, 0.3);
             --text-white: #ffffff;
             --text-gray: #d1d5db;
             --card-bg: #0a0a0a;
@@ -106,7 +106,7 @@
             left: -10%;
             width: 40%;
             height: 60%;
-            background: radial-gradient(circle, rgba(14, 165, 233, 0.15) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255, 122, 106, 0.15) 0%, transparent 70%);
             z-index: -1;
             pointer-events: none;
         }
@@ -117,7 +117,7 @@
             right: -10%;
             width: 50%;
             height: 70%;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(239, 68, 68, 0.1) 0%, transparent 70%);
             z-index: -1;
             pointer-events: none;
         }
@@ -294,6 +294,59 @@
             line-height: 1.6;
         }
 
+        /* Large Impact Sections */
+        .impact-section {
+            padding: 80px 0;
+        }
+
+        .impact-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+        }
+
+        .impact-content {
+            padding: 60px;
+        }
+
+        .impact-content h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+
+        .impact-content p {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            margin-bottom: 32px;
+        }
+
+        .impact-image {
+            height: 100%;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-top: 60px;
+            overflow: hidden;
+        }
+
+        .impact-image img {
+            width: 55%;
+            border-radius: 20px 20px 0 0;
+            border: 1px solid var(--card-border);
+            border-bottom: none;
+            box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .impact-card.accent {
+            background: linear-gradient(135deg, #ff7a6a 0%, #000000 100%);
+        }
+
         /* Download CTA */
         .download-cta {
             padding: 100px 0;
@@ -349,6 +402,18 @@
                 grid-template-columns: 1fr 1fr;
             }
 
+            .impact-card {
+                grid-template-columns: 1fr;
+            }
+
+            .impact-image {
+                padding-top: 0;
+            }
+
+            .impact-image img {
+                width: 90%;
+            }
+
             h1 {
                 font-size: 3.5rem;
             }
@@ -357,6 +422,10 @@
         @media (max-width: 640px) {
             .feature-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .impact-content {
+                padding: 40px 24px;
             }
 
             h1 {
@@ -371,11 +440,11 @@
     <!-- App Navigation Bar -->
     <nav class="app-nav">
         <div class="app-nav-container">
-            <a href="index.html" class="app-nav-item active">
+            <a href="index.html" class="app-nav-item">
                 <img src="assets/images/peaktask_icon.png" alt="PeakTask" class="app-icon">
                 <span class="app-name">PeakTask</span>
             </a>
-            <a href="gainnotes.html" class="app-nav-item">
+            <a href="gainnotes.html" class="app-nav-item active">
                 <img src="assets/images/gainnotes_icon.png" alt="GainNotes" class="app-icon">
                 <span class="app-name">GainNotes</span>
             </a>
@@ -387,108 +456,97 @@
 
     <div class="container">
         <nav>
-            <a href="#" class="nav-logo">PeakTask</a>
+            <a href="gainnotes.html" class="nav-logo">GainNotes</a>
         </nav>
 
         <section class="hero">
-            <span class="badge">Elevate Your Workflow</span>
-            <h1>Climb Your Way to<br>Productivity.</h1>
-            <p class="hero-description">The only to-do list app that ranks your tasks automatically and rewards your
-                progress with mountain elevation levels.</p>
+            <span class="badge">Built for Your Flow</span>
+            <h1>Log Your Gains.<br>Minimal Effort.</h1>
+            <p class="hero-description">The zero-friction gym tracker designed to stay out of your way and focus on what
+                matters: your progress.</p>
 
             <div class="cta-buttons">
-                <a href="https://apps.apple.com/ca/app/peak-task/id6756218539" class="store-btn apple" target="_blank"
-                    rel="noopener">
+                <a href="https://apps.apple.com/ca/app/gainnotes-simple-gym-tracker/id6757085848"
+                    class="store-btn apple" target="_blank" rel="noopener">
                     <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
                         alt="Download on the App Store">
-                </a>
-                <a href="https://play.google.com/store/apps/details?id=com.daver.peaktask" class="store-btn google"
-                    target="_blank" rel="noopener">
-                    <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
-                        alt="Get it on Google Play">
                 </a>
             </div>
         </section>
 
         <section class="screens-gallery">
             <div class="screen-item">
-                <img src="assets/images/screenshot_dark_tasks.png" alt="Dark Mode Task List">
+                <img src="assets/images/gainnotes_home.png" alt="GainNotes Home">
             </div>
             <div class="screen-item">
-                <img src="assets/images/screenshot_light_tasks.png" alt="Light Mode Task List">
+                <img src="assets/images/gainnotes_active_session.png" alt="Active Session Logging">
             </div>
             <div class="screen-item">
-                <img src="assets/images/screenshot_done_tasks.png" alt="Done Tasks History">
+                <img src="assets/images/gainnotes_history_detail.png" alt="Workout History Breakdown">
             </div>
             <div class="screen-item">
-                <img src="assets/images/screenshot_light_tasks_2.png" alt="Personal Task List">
+                <img src="assets/images/gainnotes_home.png" alt="Gym Tracker Discovery">
             </div>
             <div class="screen-item">
-                <img src="assets/images/screenshot_congrats.png" alt="Success Milestone">
+                <img src="assets/images/gainnotes_active_session.png" alt="Lifting Progress">
             </div>
         </section>
 
         <section class="features">
             <div class="feature-grid">
                 <div class="feature-item">
+                    <div class="feature-icon"><i data-lucide="dumbbell"></i></div>
+                    <h3>Seamless Logging</h3>
+                    <p>Track your sets, reps, and weight with a clean, one-tap interface designed for use while
+                        training.
+                    </p>
+                </div>
+                <div class="feature-item">
                     <div class="feature-icon"><i data-lucide="zap"></i></div>
-                    <h3>Ranked Tasks</h3>
-                    <p>Our algorithm automatically sorts your tasks based on importance and effort, so you always know
-                        what to tackle next.</p>
+                    <h3>Smart Fill</h3>
+                    <p>GainNotes remembers your last performance and auto-fills your values, so you can focus on the
+                        lift.</p>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon"><i data-lucide="mountain"></i></div>
-                    <h3>Elevation Gain</h3>
-                    <p>Every completed task adds to your height. Climb from local hills to the world's most iconic
-                        summits.</p>
+                    <div class="feature-icon"><i data-lucide="award"></i></div>
+                    <h3>PR Tracking</h3>
+                    <p>Visually track your personal records for every exercise and see your strength grow over time.</p>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon"><i data-lucide="users"></i></div>
-                    <h3>Shared Lists</h3>
-                    <p>Collaborate with friends and colleagues. Share your lists and conquer mountains together in
-                        real-time.</p>
+                    <div class="feature-icon"><i data-lucide="clipboard-list"></i></div>
+                    <h3>Smart Templates</h3>
+                    <p>Create custom templates for your routine and jump straight into your workout with zero setup.</p>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon"><i data-lucide="layout"></i></div>
-                    <h3>Smart Widgets</h3>
-                    <p>Stay on top of your most important tasks right from your home screen with our beautifully
-                        designed widgets.</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon"><i data-lucide="bar-chart-3"></i></div>
-                    <h3>Growth History</h3>
-                    <p>Visualize your progress over time with detailed charts and history. See how far you've climbed
-                        each week.</p>
+                    <div class="feature-icon"><i data-lucide="history"></i></div>
+                    <h3>Detailed History</h3>
+                    <p>Review every past session with beautiful summaries and detailed exercise-by-exercise breakdowns.
+                    </p>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon"><i data-lucide="cloud"></i></div>
-                    <h3>Cloud Sync</h3>
-                    <p>Your tasks and elevation progress are always in sync across all your devices, so you never skip a
-                        beat.</p>
+                    <h3>iCloud Sync</h3>
+                    <p>Your data stays in sync across all your devices, ensuring your logs are always where you need
+                        them.</p>
                 </div>
             </div>
         </section>
 
         <section class="download-cta">
-            <h2>Download PeakTask</h2>
+            <h2>Download GainNotes</h2>
             <div class="cta-buttons">
-                <a href="https://apps.apple.com/ca/app/peak-task/id6756218539" class="store-btn apple" target="_blank"
-                    rel="noopener">
+                <a href="https://apps.apple.com/ca/app/gainnotes-simple-gym-tracker/id6757085848"
+                    class="store-btn apple" target="_blank" rel="noopener">
                     <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
                         alt="Download on the App Store">
-                </a>
-                <a href="https://play.google.com/store/apps/details?id=com.daver.peaktask" class="store-btn google"
-                    target="_blank" rel="noopener">
-                    <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
-                        alt="Get it on Google Play">
                 </a>
             </div>
         </section>
 
         <footer>
-            <span class="footer-logo">PeakTask</span>
+            <span class="footer-logo">GainNotes</span>
             <div class="footer-links">
-                <a href="mailto:david@peaktask.app">Support</a>
+                <a href="mailto:david@gainnotes.app">Support</a>
             </div>
             <p class="copyright">&copy; 2026 David Raji. All rights reserved.</p>
         </footer>
