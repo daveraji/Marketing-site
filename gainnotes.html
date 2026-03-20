@@ -214,6 +214,38 @@
             perspective: 1000px;
         }
 
+        @media (max-width: 768px) {
+            .screens-gallery {
+                overflow-x: auto;
+                overflow-y: visible;
+                justify-content: flex-start;
+                padding-left: 24px;
+                padding-right: 24px;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+            }
+
+            .screens-gallery::-webkit-scrollbar {
+                display: none;
+            }
+
+            .screen-item {
+                scroll-snap-align: center;
+            }
+
+            /* Disable the alternating vertical offsets on mobile so items sit in a clean row */
+            .screen-item:nth-child(odd),
+            .screen-item:nth-child(even) {
+                transform: none;
+            }
+
+            .screen-item:hover {
+                transform: none;
+            }
+        }
+
         .screen-item {
             width: 240px;
             flex-shrink: 0;
