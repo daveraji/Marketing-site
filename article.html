@@ -217,6 +217,19 @@
                 padding: 24px 20px;
             }
         }
+
+        .visitor-counter {
+            position: fixed;
+            bottom: 5px;
+            right: 5px;
+            opacity: 0.01;
+            transition: opacity 0.3s;
+            z-index: 9999;
+        }
+
+        .visitor-counter:hover {
+            opacity: 1;
+        }
     </style>
 </head>
 
@@ -309,5 +322,8 @@
             }
         });
     </script>
+    <div class="visitor-counter">
+        <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fdaylines.app&count_bg=%23000000&title_bg=%23000000&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=true" alt="Hits">
+    </div>
 </body>
 </html>
