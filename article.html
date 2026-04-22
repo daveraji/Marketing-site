@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daylines Article</title>
+    <meta name="description" content="Read this article on Daylines">
+    <!-- SEO Meta Tags -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-black: #000000;
+            --accent-color: #ffffff;
+            --text-white: #ffffff;
+            --text-gray: #d1d5db;
+            --card-bg: #0a0a0a;
+            --card-border: #1f2937;
+            --radius-xl: 32px;
+            --radius-l: 24px;
+            --radius-m: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-black);
+            color: var(--text-white);
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
+
+        /* App Navigation Bar */
+        .app-nav {
+            background: rgba(10, 10, 10, 0.95);
+            border-bottom: 1px solid var(--card-border);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .app-nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .nav-logo {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--text-white);
+            text-decoration: none;
+            letter-spacing: -1px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        /* Article Wrapper */
+        .article-wrapper {
+            background: var(--bg-black);
+            min-height: 100vh;
+        }
+
+        /* Hero Image */
+        .hero-image {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            background-color: var(--card-border);
+            display: none;
+        }
+
+        .content-container {
+            padding: 32px 24px;
+        }
+
+        /* Title Area */
+        .article-title {
+            font-family: 'Libre Baskerville', serif;
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        /* Source & Meta */
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 32px;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .source-badge {
+            background: var(--text-white);
+            color: var(--bg-black);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Article Body */
+        .article-body {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 48px;
+            white-space: pre-wrap;
+        }
+
+        /* Actions Area */
+        .actions-container {
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid var(--card-border);
+            text-align: center;
+        }
+
+        .actions-container h3 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .actions-container p {
+            color: var(--text-gray);
+            margin-bottom: 24px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 320px;
+            padding: 16px 24px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: transform 0.2s, opacity 0.2s;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: var(--bg-black);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-white);
+            border: 1px solid var(--card-border);
+        }
+        
+        .btn-secondary:hover {
+            border-color: var(--text-gray);
+        }
+
+        .store-btn {
+            margin-top: 12px;
+            display: inline-flex;
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .store-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .store-btn img {
+            height: 50px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-image {
+                height: 250px;
+            }
+            .content-container {
+                padding: 24px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- App Navigation Bar -->
+    <nav class="app-nav">
+        <div class="app-nav-container">
+            <a href="daylines.html" class="nav-logo">Daylines</a>
+        </div>
+    </nav>
+
+    <div class="article-wrapper">
+        <div class="container">
+            <img id="article-img" class="hero-image" src="" alt="Article image" />
+            
+            <div class="content-container">
+                <h1 id="article-title" class="article-title">...</h1>
+                
+                <div class="article-meta">
+                    <span id="article-source" class="source-badge">NEWS</span>
+                    <span id="article-domain"></span>
+                </div>
+                
+                <div id="article-body" class="article-body">
+                    Loading article content...
+                </div>
+
+                <div class="actions-container">
+                    <h3>Get the full experience</h3>
+                    <p>Read the rest of this story deeply personalized to your interests in the Daylines app.</p>
+                    
+                    <div class="cta-buttons">
+                        <a id="original-link" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                            Open Original Source
+                        </a>
+                        
+                        <a href="https://apps.apple.com/us/app/daylines/id6758858880" class="store-btn">
+                            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const title = urlParams.get('title');
+            const url = urlParams.get('url');
+            const source = urlParams.get('source');
+            const desc = urlParams.get('desc');
+            const img = urlParams.get('img');
+
+            if (title) {
+                document.getElementById('article-title').textContent = title;
+                document.title = title + " - Daylines";
+            }
+
+            if (source) {
+                document.getElementById('article-source').textContent = source;
+            }
+
+            if (img) {
+                const imgEl = document.getElementById('article-img');
+                imgEl.src = img;
+                imgEl.style.display = 'block';
+            }
+
+            if (desc) {
+                document.getElementById('article-body').textContent = desc;
+            } else {
+                document.getElementById('article-body').innerHTML = `<i>No content summary available for this article. Download the app to read it in full.</i>`;
+            }
+
+            if (url) {
+                document.getElementById('original-link').href = url;
+                try {
+                    const parsedUrl = new URL(url);
+                    document.getElementById('article-domain').textContent = parsedUrl.hostname.replace('www.', '');
+                } catch(e) {}
+            } else {
+                document.getElementById('original-link').style.display = 'none';
+            }
+            
+            // Automatically try opening the deep link if on mobile
+            if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+                // If we had a specific ID, we could deep link directly
+                // const deepLink = 'daylines://article/id';
+            }
+        });
+    </script>
+</body>
+</html>
