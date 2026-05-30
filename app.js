@@ -61,6 +61,9 @@ let fetchedData = {};
 document.addEventListener("DOMContentLoaded", () => {
   initColorMode();
   initTabs();
+  initVisitorTracker();
+  // Use the provided local GainNotes screenshot as the placeholder for the next 2 days
+  setLocalOverride('gainnotes', 2);
   loadAppDetails(currentApp);
   // Fetch live data in background — updates UI when ready
   fetchLiveAppStoreData();
@@ -145,22 +148,33 @@ function loadAppDetails(appKey) {
 
   // Screenshot
   const screenshots = data.screenshotUrls || APP_CACHE[appKey].screenshotUrls;
+  // Use a local screenshot immediately as a placeholder so the UI isn't empty
+  const localPlaceholder = getLocalScreenshot(appKey);
+  if (screenshotImg && localPlaceholder) {
+    screenshotImg.src = localPlaceholder;
+    screenshotImg.alt = `${data.trackName} screenshot`;
+  }
+
+  // If a temporary local override is active, keep the local image for now
+  if (isLocalOverrideActive(appKey)) {
+    return;
+  }
+
+  // Otherwise, attempt to preload the remote screenshot and replace when loaded
   if (screenshotImg && screenshots && screenshots.length > 0) {
-    screenshotImg.classList.remove("loaded");
     if (screenshotContainer) screenshotContainer.classList.remove("img-loaded");
-    screenshotImg.onload = () => {
+    screenshotImg.classList.remove("loaded");
+
+    const remote = new Image();
+    remote.onload = () => {
+      screenshotImg.src = screenshots[0];
       screenshotImg.classList.add("loaded");
       if (screenshotContainer) screenshotContainer.classList.add("img-loaded");
     };
-    screenshotImg.onerror = () => {
-      // Fallback to local screenshot if available
-      const localImg = getLocalScreenshot(appKey);
-      if (localImg) {
-        screenshotImg.src = localImg;
-      }
+    remote.onerror = () => {
+      // Keep local placeholder if remote fails
     };
-    screenshotImg.src = screenshots[0];
-    screenshotImg.alt = `${data.trackName} screenshot`;
+    remote.src = screenshots[0];
   }
 
   // Download links
@@ -185,6 +199,31 @@ function getLocalScreenshot(appKey) {
     gainnotes: "assets/images/gainnotes_home.png"
   };
   return localMap[appKey] || null;
+}
+
+// Temporary local override (store expiry in ms since epoch)
+function setLocalOverride(appKey, days) {
+  try {
+    const expires = Date.now() + (days || 2) * 24 * 60 * 60 * 1000;
+    localStorage.setItem(`localScreenshotOverride_${appKey}`, expires.toString());
+  } catch (e) {
+    // ignore
+  }
+}
+
+function isLocalOverrideActive(appKey) {
+  try {
+    const v = localStorage.getItem(`localScreenshotOverride_${appKey}`);
+    if (!v) return false;
+    const expires = parseInt(v, 10);
+    return !Number.isNaN(expires) && Date.now() < expires;
+  } catch (e) {
+    return false;
+  }
+}
+
+function clearLocalOverride(appKey) {
+  try { localStorage.removeItem(`localScreenshotOverride_${appKey}`); } catch (e) {}
 }
 
 // ─── Live iTunes API ──────────────────────────────────────────────────────────
@@ -239,17 +278,42 @@ document.addEventListener("DOMContentLoaded", () => {
 // ─── Dark / Light Mode ───────────────────────────────────────────────────────
 function initColorMode() {
   const toggleBtn = document.getElementById("color-mode-toggle");
+  const textEl     = document.getElementById("color-mode-text");
   const htmlEl    = document.documentElement;
+
+  const updateToggleText = (mode) => {
+    if (textEl) textEl.textContent = mode === "light" ? "Dark mode" : "Light mode";
+  };
 
   // Default = light; respect persisted choice
   const savedMode  = localStorage.getItem("color-mode");
   const currentMode = savedMode || "light";
   htmlEl.setAttribute("data-color-mode", currentMode);
+  updateToggleText(currentMode);
 
   if (!toggleBtn) return;
   toggleBtn.addEventListener("click", () => {
     const next = htmlEl.getAttribute("data-color-mode") === "light" ? "dark" : "light";
     htmlEl.setAttribute("data-color-mode", next);
     localStorage.setItem("color-mode", next);
+    updateToggleText(next);
   });
+}
+
+// ─── Visitor Tracker ──────────────────────────────────────────────────────────
+function initVisitorTracker() {
+  const countEl = document.getElementById("visitor-count");
+  if (!countEl) return;
+
+  // Simple local simulation of a visitor tracker
+  let count = parseInt(localStorage.getItem("site_visitor_count") || "1240", 10);
+  
+  // Only increment once per session
+  if (!sessionStorage.getItem("visited_this_session")) {
+    count++;
+    localStorage.setItem("site_visitor_count", count.toString());
+    sessionStorage.setItem("visited_this_session", "true");
+  }
+
+  countEl.textContent = count.toLocaleString();
 }

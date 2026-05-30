@@ -185,11 +185,32 @@ html[data-color-mode="dark"] .dark-mode-toggle {
   color: var(--text-primary);
 }
 
-.moon-icon-btn {
+.moon-icon-btn,
+.sun-icon-btn {
   width: 15px;
   height: 15px;
   flex-shrink: 0;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.moon-icon-btn {
   fill: currentColor;
+}
+
+.sun-icon-btn {
+  display: none;
+}
+
+html[data-color-mode="dark"] .moon-icon-btn {
+  display: none;
+}
+
+html[data-color-mode="dark"] .sun-icon-btn {
+  display: block;
 }
 
 /* --- App Switcher / Tabs --- */
@@ -606,6 +627,31 @@ html[data-color-mode="dark"] footer.app-footer {
 .footer-copyright {
   font-size: 0.75rem;
   color: var(--text-muted);
+}
+
+/* --- Visitor Tracker --- */
+.visitor-tracker {
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  padding: 6px 10px;
+  background-color: var(--bg-surface-elevated);
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  border-radius: 6px;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: auto;
+  z-index: 2000;
+  border: 1px solid transparent;
+}
+
+.visitor-tracker:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+  border-color: var(--accent-glow);
 }
 
 /* --- Responsive mobile --- */
