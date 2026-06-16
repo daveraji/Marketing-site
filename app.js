@@ -12,7 +12,7 @@ const APP_CACHE = {
     releaseNotes: "UI cleanup, Days since Recurring task logic update.",
     description: "Peak Task is designed to help you stop feeling overwhelmed and start making real progress in life.\n\nBy dynamically ranking your tasks, you are forced to focus on only one primary objective at a time. I can rank tasks, build in recurring reminders and even see how long it's been since I last did something.\n\nI can quickly build a list of tasks and the more information I add and time passes, the list is automatically ranked. I can drag and drop the tasks so that they move up or down the list as well. I can also bulk add tasks or use voice input and Siri to quickly add whatever it is that comes to mind.\n\nOne of the best PeakTask features is that you can collaborate on a shared list with any other PeakTask user regardless of the type of device they're using (iPhone/Android/web).\n\nSpend less time managing tasks and more time actually getting things done.",
     screenshotUrls: [
-      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/3c/7c/2f/3c7c2fe6-a2c7-326c-e309-4ea25ee68093/1.png/300x650bb.webp"
+      "assets/images/peaktask_screenshot.png"
     ]
   },
   daylines: {
@@ -155,8 +155,10 @@ function loadAppDetails(appKey) {
     screenshotImg.alt = `${data.trackName} screenshot`;
   }
 
-  // If a temporary local override is active, keep the local image for now
-  if (isLocalOverrideActive(appKey)) {
+  // If a temporary local override is active, or if it is PeakTask, keep the local image for now
+  if (isLocalOverrideActive(appKey) || appKey === "peaktask") {
+    if (screenshotContainer) screenshotContainer.classList.add("img-loaded");
+    if (screenshotImg) screenshotImg.classList.add("loaded");
     return;
   }
 
@@ -194,7 +196,7 @@ function loadAppDetails(appKey) {
 // Local screenshot fallback paths (relative to Marketing-site root)
 function getLocalScreenshot(appKey) {
   const localMap = {
-    peaktask: "assets/images/screenshot_light_tasks.png",
+    peaktask: "assets/images/peaktask_screenshot.png",
     daylines:  "assets/images/daylines_feed.png",
     gainnotes: "assets/images/gainnotes_home.png"
   };
