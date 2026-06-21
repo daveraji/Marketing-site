@@ -34,7 +34,7 @@ const APP_CACHE = {
     version: "1.5.0",
     fileSizeBytes: "22457344",
     minimumOsVersion: "16.1",
-    trackViewUrl: "https://apps.apple.com/us/app/gainnotes-simple-gym-tracker/id6757085848",
+    trackViewUrl: "https://apps.apple.com/us/app/gainnotes-build-your-strength/id6757085848",
     releaseNotes: "Strength profile, PB icon.",
     description: "A simple, flexible gym tracking app with no fluff.\n\nTrack any workout exactly the way you want — no rigid programs, no setup headaches, and no subscriptions pushing you around.\n\nThe app is free for most users. A $6/year premium option unlocks unlimited workouts, but you'll likely never need it. No ads, no gimmicks — just an easy, low-effort way to log your weight training and move on with your day.",
     screenshotUrls: [
@@ -132,6 +132,7 @@ function loadAppDetails(appKey) {
   const metaVersion = document.getElementById("meta-version");
   const metaSize    = document.getElementById("meta-size");
   const metaNotes   = document.getElementById("meta-notes");
+  const metaCompatibility = document.getElementById("meta-compatibility");
 
   if (badgeEl)  badgeEl.textContent  = data.primaryGenreName;
   if (titleEl)  titleEl.textContent  = data.trackName;
@@ -139,6 +140,16 @@ function loadAppDetails(appKey) {
   if (metaGenre)   metaGenre.textContent   = data.primaryGenreName;
   if (metaVersion) metaVersion.textContent = `v${data.version || "1.0.0"}`;
   if (metaNotes)   metaNotes.textContent   = data.releaseNotes || "Performance and UI improvements.";
+
+  // Compatibility
+  if (metaCompatibility) {
+    const minOs = data.minimumOsVersion || (appKey === "peaktask" ? "16.0" : appKey === "daylines" ? "13.0" : "16.1");
+    if (appKey === "peaktask") {
+      metaCompatibility.textContent = `iOS ${minOs}+ / Android`;
+    } else {
+      metaCompatibility.textContent = `iOS ${minOs}+`;
+    }
+  }
 
   // File size
   if (metaSize && data.fileSizeBytes) {
